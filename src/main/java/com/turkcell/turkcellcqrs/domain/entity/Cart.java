@@ -1,6 +1,5 @@
 package com.turkcell.turkcellcqrs.domain.entity;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,31 +7,25 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
 
-import java.math.BigDecimal;
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "books")
+@Table(name="carts")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+public class Cart {
 
-public class Book {
-    @UuidGenerator
     @Id
+    @UuidGenerator
     private UUID id;
 
-    private String name;
+    @OneToOne()
+    @JoinColumn(name = "student_id", unique = true)
+    private Student student;
 
-    private BigDecimal price;
-
-    @ManyToOne
-    @JoinColumn(name="author_id")
-    private Author author;
-
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "cart")
     private Set<CartItem> cartItems;
-
 }
