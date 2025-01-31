@@ -2,9 +2,11 @@ package com.turkcell.turkcellcqrs.core.pipelines.logging;
 
 
 import an.awesome.pipelinr.Command;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
+@Order(1)
 public class LoggingBehavior implements Command.Middleware {
 
     @Override
