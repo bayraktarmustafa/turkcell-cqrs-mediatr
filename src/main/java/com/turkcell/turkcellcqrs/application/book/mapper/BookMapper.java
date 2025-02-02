@@ -9,8 +9,9 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface BookMapper {
-    BookMapper INSTANCE = Mappers.getMapperClass(BookMapper.class);
+    BookMapper INSTANCE = Mappers.getMapper(BookMapper.class);
 
+    @Mapping(target = "author.id", source = "authorId")
     Book convertCreateCommandToBook(CreateBookCommand command);
 
     CreatedBookResponse convertBookToCreateBookResponse(Book book);
